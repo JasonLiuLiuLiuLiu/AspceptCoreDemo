@@ -5,7 +5,7 @@ namespace AspceptCoreDemo
 {
     public interface IUserService
     {
-        [NonAspect]
+       
         String GetUserName(ApiRequest req);
     }
 

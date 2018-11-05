@@ -30,10 +30,14 @@ namespace AspceptCoreDemo
             services.AddMvc();
             services.AddDynamicProxy(config =>
             {
+                //对GetUserName方法不生效
+                config.NonAspectPredicates.AddMethod("GetUserName");
+
                 //支持通配符,只对IRole开头的Servce有效
                 //config.Interceptors.AddTyped<AuthenticateInterceptor>(Predicates.ForService("IRole*"));
                 //支持通配符,只对Name结尾的方法有效
-                config.Interceptors.AddTyped<AuthenticateInterceptor>(Predicates.ForMethod("*Name"));
+
+                config.Interceptors.AddTyped<AuthenticateInterceptor>();
             });
 
             return services.BuildAspectInjectorProvider();
